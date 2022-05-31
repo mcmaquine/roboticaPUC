@@ -3,7 +3,7 @@ from pickletools import uint8
 import cv2
 import numpy as np
 
-pixelHSV = np.zeros((1,3), np.int_)
+pixelHSV = np.zeros((1,3), np.uint8)
 
 # mouse callback function
 def mouse_callback(event,x,y,flags,param):
@@ -15,6 +15,9 @@ def mouse_callback(event,x,y,flags,param):
     elif event == cv2.EVENT_LBUTTONUP:
         print("Start X:{} End X:{} Start Y:{} End Y:{}".format(ix, x, iy, y))
         hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
+        selected_img = np.zeros((y - iy, x - ix, 3), np.uint8)
+        selected_img[:,:] = frame[iy:y, ix:x]
+        cv2.imshow("Pixel Selecionados", selected_img)
         count = 0
         h = []
         s = []
