@@ -31,7 +31,7 @@ while (True):
     l_b = np.array([l_h, l_s, l_v])
     u_b = np.array([u_h, u_s, u_v])
 
-    mascara = cv2.inRange(frame, l_b, u_b)
+    mascara = cv2.inRange(hsv, l_b, u_b)
    
     opening=cv2.morphologyEx(mascara, cv2.MORPH_OPEN, kernel)
     x,y,w,h=cv2.boundingRect(opening)
