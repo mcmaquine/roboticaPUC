@@ -3,11 +3,9 @@ from pickletools import uint8
 import cv2
 import numpy as np
 
-pixelHSV = np.zeros((1,3), np.uint8)
-
 # mouse callback function
 def mouse_callback(event,x,y,flags,param):
-    global ix, iy, count, pixelHSV
+    global ix, iy, count
     if event == cv2.EVENT_LBUTTONDOWN:
         ix = x
         iy = y
@@ -22,6 +20,7 @@ def mouse_callback(event,x,y,flags,param):
         h = []
         s = []
         v = []
+
         for i in range(ix, x+1):
             for j in range(iy, y+1):
                 h.append( hsv[j,i][0] )
