@@ -8,6 +8,7 @@ import numpy as np
 def nothing(x):
     pass
 
+#   Variavel que controla a atualização
 selecting = False
 
 cam=cv2.VideoCapture(0)
@@ -32,8 +33,7 @@ def mouse_callback(event,x,y,flags,param):
     elif event == cv2.EVENT_LBUTTONUP:
         selecting = False
         hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
-        selected_img = np.zeros((y - iy, x - ix, 3), np.uint8)
-        selected_img[:,:] = frame[iy:y, ix:x]
+        
         h = []
         s = []
         v = []
@@ -49,8 +49,8 @@ def mouse_callback(event,x,y,flags,param):
         LS = min(s)
         US = max(s)
         LV = min(v)
-        UV = max(v)
-
+        UV = max(v)        
+        
         cv2.setTrackbarPos("LH", "Tracking", LH)
         cv2.setTrackbarPos("UH", "Tracking", UH)
         cv2.setTrackbarPos("LS", "Tracking", LS)
